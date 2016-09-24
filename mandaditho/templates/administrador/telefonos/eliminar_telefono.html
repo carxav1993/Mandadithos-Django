@@ -1,0 +1,29 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Eliminar Teléfonos{% endblock titulo %}
+
+
+{% block cuerpo %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Elminación de Teléfono</h1>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-lg-12">
+    		<form action="" method="POST">
+    		{% csrf_token %}
+    			<div class="form-group">
+    				<h3>¿Seguro desea eliminar el numero <b><i>{{telefono.numero}} de la operadora {{telefono.get_operadora_display}}?</i></b></h3>
+    			</div>
+    			<div class="form-group">
+    				<input type="submit" value="Eliminar" class="btn btn-primary">
+    				<a href="{% url 'administrador:telefonos' %}" class="btn btn-danger">Cancelar</a>
+    			</div>
+    		</form>
+    	</div>
+    </div>	
+{% endblock cuerpo %}
+
+
+{% block scripts %}{% endblock scripts %}

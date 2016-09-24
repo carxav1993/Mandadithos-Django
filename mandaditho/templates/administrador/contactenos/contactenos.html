@@ -1,0 +1,60 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Contáctenos{% endblock titulo %}
+
+{% block cuerpo %}
+			<div class="row">
+		        <div class="col-lg-12">
+		            <h1 class="page-header">Contáctenos</h1>
+		        </div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-lg-12">
+		    		{% if contactenos.count == 0 %}
+		    			<h3>No existen registros para mostrar</h3>
+	    			{% else %}
+			    		<table class="table table-hover">
+			    			<thead>
+	                            <tr>
+	                                <th>Nombres/Apellidos</th>
+	                                <th>Email</th>
+	                                <th>Asunto</th>
+	                                <th>Fecha</th>
+	                                <th>Leído</th>
+	                                <th>Acciones</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                        {% for contact in contactenos %}
+	                            <tr>
+	                                <td>{{contact.nombres_apellidos}}</td>
+	                                <td>{{contact.email}}</td>
+	                                <td>{{contact.asunto}}</td>
+	                                <td>{{contact.fecha}}</td>
+	                                <td>
+	                                	{% if contact.leido %}
+	                                		<button type="button" class="btn btn-primary btn-circle"><i class="fa fa-check fa-fw"></i></button>
+                                		{% else %}
+                                			<button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times fa-fw"></i></button>
+	                                	{% endif %}
+	                                </td>
+	                                <td class="text-left">
+										<a href="{% url 'administrador:ver_contactenos' contact.id %}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Ver"><span class="fa fa-eye fa-fw"></span></a>
+										<a href="{% url 'administrador:eliminar_contactenos' contact.id %}" class="btn btn-danger" data-toggle="tooltip" title="Eliminar" data-toggle="tooltip" data-placement="right"><span class="fa fa-trash-o fa-fw"></span></a>
+	                                </td>
+	                            </tr>
+	                        {% endfor %}
+	                        </tbody>
+			    		</table>	
+		    		{% endif %}
+		    	</div>
+		    </div>
+{% endblock cuerpo %}	
+
+{% block scripts %}
+	<script type="text/javascript">
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+{% endblock scripts %}

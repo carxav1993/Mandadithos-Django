@@ -1,0 +1,49 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Tipo de servicio{% endblock titulo %}
+
+{% block cuerpo %}
+			<div class="row">
+		        <div class="col-lg-12">
+		            <h1 class="page-header">Tipos de servicio</h1>
+		        </div>
+		    </div>
+		    <div class="row text-right">
+		    	<a href="{% url 'administrador:anadir_tipo' %}" class="btn btn-primary"><i class="fa fa-plus-square fa-fw"></i>Añadir tipo de servicio</a>
+		    </div>
+		    <div class="row">
+		    	<div class="col-lg-12">
+		    		{% if contactenos.count == 0 %}
+		    			<h3>No existen registros para mostrar</h3>
+	    			{% else %}
+			    		<table class="table table-hover">
+			    			<thead>
+	                            <tr>
+	                                <th>Tipo</th>
+	                                <th>Acciones</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                        {% for tipo in tipos %}
+	                            <tr>
+	                                <td>{{tipo.tipo}}</td>
+	                                <td class="text-left">
+										<a href="{% url 'administrador:editar_tipo' tipo.id %}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Ver"><span class="fa fa-eye fa-fw"></span></a>
+										<a href="{% url 'administrador:eliminar_tipo' tipo.id %}" class="btn btn-danger" data-toggle="tooltip" title="Eliminar" data-toggle="tooltip" data-placement="right"><span class="fa fa-trash-o fa-fw"></span></a>
+	                                </td>
+	                            </tr>
+	                        {% endfor %}
+	                        </tbody>
+			    		</table>	
+		    		{% endif %}
+		    	</div>
+		    </div>
+{% endblock cuerpo %}	
+
+{% block scripts %}
+	<script type="text/javascript">
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+{% endblock scripts %}

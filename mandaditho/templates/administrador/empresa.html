@@ -1,0 +1,154 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Empresa{% endblock titulo %}
+
+{% block cuerpo %}
+	    		
+			<div class="row">
+		        <div class="col-lg-12">
+		            <h1 class="page-header">Datos de la empresa</h1>
+		        </div>
+		    </div>    
+		    <div class="row">
+			    <div class="col-lg-8 col-md-8">
+					<form action="{% url 'administrador:empresa' %}" role="form" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+						<div class="form-group">
+			                <label>(*){{empresa_form.nombre.label_tag}}</label>
+			                {{empresa_form.nombre}}
+			                {{empresa_form.nombre.errors}}
+		                </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.descripcion.label_tag}}</label>
+			                {{empresa_form.descripcion}}
+			                {{empresa_form.descripcion.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.logo.label_tag}}</label>
+			                <img src="{{empresa.logo.url}}" alt="Logo" height="100" width="180">
+			                {{empresa_form.logo}}
+			                {{empresa_form.logo.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.favicon.label_tag}}</label>
+			                <img src="{{empresa.favicon.url}}" alt="Favicon" height="24" width="24">
+			                {{empresa_form.favicon}}
+			                {{empresa_form.favicon.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.mision.label_tag}}</label>
+			                {{empresa_form.mision}}
+			                {{empresa_form.mision.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>{{empresa_form.img_mision.label_tag}}</label>
+			                <img src="{{empresa.img_mision.url}}" alt="Mision" height="100" width="200">
+			                {{empresa_form.img_mision}}
+			                {{empresa_form.img_mision.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica1.label_tag}}</label>
+			                {{empresa_form.caracteristica1}}
+			                {{empresa_form.caracteristica1.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica_descripcion1.label_tag}}</label>
+			                {{empresa_form.caracteristica_descripcion1}}
+			                {{empresa_form.caracteristica_descripcion1.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica2.label_tag}}</label>
+			                {{empresa_form.caracteristica2}}
+			                {{empresa_form.caracteristica2.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica_descripcion2.label_tag}}</label>
+			                {{empresa_form.caracteristica_descripcion2}}
+			                {{empresa_form.caracteristica_descripcion2.errors}}
+		                </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica3.label_tag}}</label>
+			                {{empresa_form.caracteristica3}}
+			                {{empresa_form.caracteristica3.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica_descripcion3.label_tag}}</label>
+			                {{empresa_form.caracteristica_descripcion3}}
+			                {{empresa_form.caracteristica_descripcion3.errors}}
+		                </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica4.label_tag}}</label>
+			                {{empresa_form.caracteristica4}}
+			                {{empresa_form.caracteristica4.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.caracteristica_descripcion4.label_tag}}</label>
+			                {{empresa_form.caracteristica_descripcion4}}
+			                {{empresa_form.caracteristica_descripcion4.errors}}
+						</div>
+						<div class="form-group">
+			                <label>(*){{empresa_form.img_obj1.label_tag}}</label>
+			                <img src="{{empresa.img_obj1.url}}" alt="Objetivo1" width="200" height="100">
+			                {{empresa_form.img_obj1}}
+			                {{empresa_form.img_obj1.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.img_obj2.label_tag}}</label>
+			                <img src="{{empresa.img_obj2.url}}" alt="Objetivo2" width="200" height="100">
+			                {{empresa_form.img_obj2}}
+			                {{empresa_form.img_obj2.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.img_obj3.label_tag}}</label>
+			                <img src="{{empresa.img_obj3.url}}" alt="Objetivo3" width="200" height="100">
+			                {{empresa_form.img_obj3}}
+			                {{empresa_form.img_obj3.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label for="id_email">(*){{empresa_form.email.label_tag}}</label>
+			                {{empresa_form.email}}
+			                {{empresa_form.email.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.direccion.label_tag}}</label>
+			                {{empresa_form.direccion}}
+			                {{empresa_form.direccion.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.red_facebook.label_tag}}</label>
+			                {{empresa_form.red_facebook}}
+			                {{empresa_form.red_facebook.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.red_twiiter.label_tag}}</label>
+			                {{empresa_form.red_twiiter}}
+			                {{empresa_form.red_twiiter.errors}}
+			            </div>
+			            <div class="form-group">
+			                <label>(*){{empresa_form.red_instagram.label_tag}}</label>
+			                {{empresa_form.red_instagram}}
+			                {{empresa_form.red_instagram.errors}}
+			            </div>
+			            <div class="form-group">
+			            	<input type="submit" value="Actualizar" class="btn btn-primary">
+						</div>
+					</form>
+			    </div>
+			    <div class="col-lg-4 col-md-4">
+			    	<div class="panel panel-danger">
+			    		<div class="panel-heading">Recuerde</div>
+			    		<div class="panel-body text-justify">
+			    			<p>{{mensaje}}</p>
+			    		</div>
+			    		<div class="panel-footer">Administrador</div>
+			    	</div>
+			    </div>
+		    </div>
+{% endblock cuerpo %}
+
+
+{% block scripts %}
+	<script type="text/javascript">
+	$('.errorlist').css({'background' : 'red', 'color' : 'white'});
+	</script>
+{% endblock scripts %}

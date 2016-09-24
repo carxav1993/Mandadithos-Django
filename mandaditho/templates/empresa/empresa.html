@@ -1,0 +1,113 @@
+{% extends "empresa/base.html" %}
+
+{% block titulo %}Empresa{% endblock titulo %}
+
+{% block principal %}{{empresa.nombre|upper}}{% endblock principal %}
+
+{% block cuerpo %}
+	<div class="about">
+		 <!--//start-banner-->
+		  <div class="container">
+			<section class="title-section">
+				<h1 class="title-header">Empresa</h1>
+				<ul class="breadcrumb breadcrumb__t"><li><a href="{% url 'empresa:inicio' %}">Inicio</a></li><li class="active">Empresa</li></ul>  
+			</section> 
+	       </div>
+		</div>
+		<div class="about_bottom">
+		  <div class="container">
+		  	<div class="row">
+		  		<div class="col-md-8 about_left">
+		  			<h3 class="m_2">Descripciones</h3>
+		  			<ul class="about_grid1 about_box">
+		  			  <li class="about_img"><img src="{{empresa.img_mision.url}}" class="img-responsive" alt=""/></li>
+		  			  <li class="about_desc">
+		  			  	<h5><a href="#">Misión</a></h5>
+		  			  	<p>{{empresa.mision}}</p>
+		  			    <!-- <a href="#" class="about_btn" title="Image Format">more</a> -->
+		  			  </li>
+		  			  <div class="clearfix"></div>
+		  			</ul>
+		  			<!--728x90-->
+		  			<ul class="about_grid1">
+		  			  <li class="about_img"><img src="{{empresa.img_obj1.url}}" class="img-responsive" alt=""/></li>
+		  			  <li class="about_desc">
+		  			  	<h5><a href="#">Objetivo Largo Plazo</a></h5>
+		  			  	<ol>
+		  			  	{% for obj in objetivos %}
+							{% if obj.tipo == "LP" %}
+								<li><p>{{obj.descripcion}}</p></li>
+							{% endif %}
+		  			  	{% endfor %}
+		  			  	</ol>
+		  			    <!-- <a href="#" class="about_btn" title="slideshow Format">more</a> -->
+		  			  </li>
+		  			  <div class="clearfix"></div>
+		  			</ul>
+		  			<ul class="about_grid1">
+		  			  <li class="about_img"><img src="{{empresa.img_obj2.url}}" class="img-responsive" alt=""/></li>
+		  			  <li class="about_desc">
+		  			  	<h5><a href="#">Objetivo Mediano Plazo</a></h5>
+		  			  	<ol>
+		  			  	{% for obj in objetivos %}
+							{% if obj.tipo == "MP" %}
+								<li><p>{{obj.descripcion}}</p></li>
+							{% endif %}
+		  			  	{% endfor %}
+		  			  	</ol>
+		  			    <!-- <a href="#" class="about_btn" title="slideshow Format">more</a> -->
+		  			  </li>
+		  			  <div class="clearfix"></div>
+		  			</ul>
+		  			<ul class="about_grid1">
+		  			  <li class="about_img"><img src="{{empresa.img_obj3.url}}" class="img-responsive" alt=""/></li>
+		  			  <li class="about_desc">
+		  			  	<h5><a href="#">Objetivo Corto Plazo</a></h5>
+		  			  	<ol>
+		  			  	{% for obj in objetivos %}
+							{% if obj.tipo == "CP" %}
+								<li><p>{{obj.descripcion}}</p></li>
+							{% endif %}
+		  			  	{% endfor %}
+		  			  	</ol>
+		  			    <!-- <a href="#" class="about_btn" title="slideshow Format">more</a> -->
+		  			  </li>
+		  			  <div class="clearfix"></div>
+		  			</ul>
+		  		</div>
+		  		<div class="col-md-4">
+		  		   <h3 class="m_2">Ventajas Competitivas</h3>
+		  		   <div class="list styled custom-list">
+		  		   <ul>
+						<li><span class="dropcap">1.</span><p>{{ventaja1.descripcion}}</p></li>
+						<li><span class="dropcap">2.</span><p>{{ventaja2.descripcion}}</p></li>
+						<li><span class="dropcap">3.</span><p>{{ventaja3.descripcion}}</p></li>
+						<li><span class="dropcap">4.</span><p>{{ventaja4.descripcion}}</p></li>
+					</ul>
+				  </div>
+		  		</div>
+		  	</div>
+		  </div>
+		</div>
+		<!--//end-banner-->
+{% endblock cuerpo %}
+
+{% block footer %}
+	<div class="footer_bottom">
+    	<div class="copy">
+          <p>Copyright &copy; 2016 Mandadithos. Todos los derechos reservados. 
+           <!-- Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> -->
+          </p>
+          <p>E-mail: <a href="mailto:{{empresa.email}}">{{empresa.email}}</a></p>
+          <p>Dirección: {{empresa.direccion}}</p>
+          <!-- <p>Teléfonos: {% for tel in telefonos %} {{tel.numero}} -{% endfor %}</p> -->
+       </div>
+    </div>
+{% endblock footer %}
+
+
+{% block scripts %}
+	<script type="text/javascript">
+		$("#empresa").addClass("current");
+	</script>
+{% endblock scripts %}

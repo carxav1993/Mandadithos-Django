@@ -1,0 +1,83 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Telefonos{% endblock titulo %}
+
+{% block cuerpo %}
+			<div class="row">
+		        <div class="col-lg-12">
+		            <h1 class="page-header">Telefonos de la Empresa</h1>
+		        </div>
+		    </div>
+		    <div class="row text-right">
+		    	<a href="{% url 'administrador:anadir_telefono' %}" class="btn btn-primary"><i class="fa fa-plus-square fa-fw"></i>Añadir número telefónico</a>
+		    </div>
+		    <div class="row">
+		    	<div class="col-lg-12">
+		    	{% if telefonos.count == 0 %}
+		    		<h3>No existen telefono registrados para mostrar</h3>
+	    		{% else %}
+		    		<table class="table table-hover">
+		    			<thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Operadora</th>
+                                <th>Número</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for telf in telefonos %}
+                            <tr>
+                                <td>{{telf.get_tipo_display}}</td>
+                                <td>{{telf.get_operadora_display}}</td>
+                                <td>{{telf.numero}}</td>
+                                <td class="text-left">
+									<a href="{% url 'administrador:editar_telefono' telf.id %}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Editar"><span class="fa fa-pencil-square-o fa-fw"></span></a>
+									<a href="{% url 'administrador:eliminar_telefono' telf.id %}" class="btn btn-danger" data-toggle="tooltip" title="Eliminar" data-toggle="tooltip" data-placement="right"><span class="fa fa-trash-o fa-fw"></span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+		    		</table>	
+		    	{% endif %}
+		    	</div>
+		    </div>
+		    <!-- Button trigger modal
+		    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			Launch demo modal
+			</button> -->
+
+			<!-- Modal 
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Eliminar número de teléfono</h4>
+			      </div>
+			      <div class="modal-body">
+			        <h5>¿Está seguro de querer eliminar este número de teléfono? <span id="modal_name"></span></h5>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			        <p></p><p></p>
+			        <div>
+				        <form action="" method="POST" role="form">
+				        {% csrf_token %}
+				        	<input type="submit" class="btn btn-primary" value="Aceptar">
+				        </form>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			endModal-->
+{% endblock cuerpo %}	
+
+{% block scripts %}
+	<script type="text/javascript">
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+{% endblock scripts %}

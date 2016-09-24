@@ -1,0 +1,282 @@
+{% extends "empresa/base.html" %}
+
+{% block titulo %}Inicio{% endblock titulo %}
+
+{% block favicon %}{% endblock favicon %}
+
+{% block principal %}{{empresa.nombre|upper}}{% endblock principal %}
+
+{% block cuerpo %}
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body" id="modal-body">
+	        <p>Aquí va el codigo del bootrap</p>
+	      </div>
+	      <div class="modal-footer">
+	        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="cerrar-modal"></button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!--//start-banner-->
+		<div class="banner text-center">
+				<div class="container">
+					<div class="banner-info">
+						<h1>{{empresa.nombre}} Cia. Ltda.<br></h1>
+						<p>Empresa de servicios</p>
+						<p><img class="img-logo" src="{{empresa.logo.url}}" alt=""></p>
+						<!-- <label class="page-scroll"><a class="banner-btn class scroll" href="#feature"><span> </span></a></label> -->
+				    </div>
+				</div>
+		</div>
+		<!--//end-banner-->
+		<!--//start-content-->
+		<!--728x90-->
+		<div class="main">
+		<div class="container">
+		   <div class="content_white">
+			<h2>{{empresa.nombre}} Cia. Ltda.</h2>
+			<p>{{empresa.descripcion}}</p>
+		   </div>
+	    </div>
+		   <div class="featured_content" id="feature">
+		   	 <div class="container">
+			   	<div class="row text-center">
+			   		<div class="col-md-3 feature_grid1">
+			   			<!-- <i class="icon1"> </i> -->
+			   			<span class="icon-shield"></span>
+			   			<h3 class="m_1"><a href="#">{{empresa.caracteristica1}}</a></h3>
+			   			<p class="m_2">{{empresa.caracteristica_descripcion1}}</p>
+			   			<!--<a href="#" class="feature_btn">More</a> -->
+			   		</div>
+			   		<div class="col-md-3 feature_grid1">
+			   			<!-- <i class="icon2"> </i> -->
+			   			<span class="icon-clipboard"></span>
+			   			<h3 class="m_1"><a href="#">{{empresa.caracteristica2}}</a></h3>
+			   			<p class="m_2">{{empresa.caracteristica_descripcion2}}</p>
+			   			<!-- <a href="#" class="feature_btn">More</a> -->
+			   		</div>
+			   		<div class="col-md-3 feature_grid1">
+			   			<!-- <i class="icon3"> </i> -->
+			   			<span class="icon-power"></span>
+			   			<h3 class="m_1"><a href="#">{{empresa.caracteristica3}}</a></h3>
+			   			<p class="m_2">{{empresa.caracteristica_descripcion3}}</p>
+			   			<!-- <a href="#" class="feature_btn">More</a> -->
+			   		</div>
+			   		<div class="col-md-3 feature_grid2">
+			   			<!-- <i class="icon4"> </i> -->
+			   			<span class="icon-coin-dollar"></span>
+			   			<h3 class="m_1"><a href="#">{{empresa.caracteristica4}}</a></h3>
+			   			<p class="m_2">{{empresa.caracteristica_descripcion4}}</p>
+			   			<!-- <a href="#" class="feature_btn">More</a> -->
+			   		</div>
+			   	</div>
+		    </div>
+		   </div>
+		   <!--728x90-->
+		  <div class="container">
+		   <div class="testmonial"> 
+		    <div class="row testmonial_top">
+		    	<div class="col-md-6">
+					{% if imagenes.count > 0 %}
+		    		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					  <!-- Indicators -->
+					  <ol class="carousel-indicators">
+					    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+					  </ol>
+
+					  <!-- Wrapper for slides -->
+					  <div class="carousel-inner" role="listbox">
+					  	<div class="item active">
+					    	<img src="http://socialmediaempresa.com/wp-content/uploads/2015/05/publicidad-redes-sociales.gif" height="300px" width="100%" alt="...">
+					    	<div class="carousel-caption">
+					    	</div>
+					    </div>
+					    {% for img in imagenes %}
+						    <div class="item">
+						      <img src="{{img.imagen.url}}" height="300px" width="100%" alt="...">
+						    </div>
+						    <div class="carousel-caption"></div>
+					    {% endfor %}
+					  </div>
+
+					  <!-- Controls -->
+					  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					    <span class="sr-only">Previous</span>
+					  </a>
+					  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					    <span class="sr-only">Next</span>
+					  </a>
+					</div>
+					{% else %}
+						<h3>No exiten imágenes en la base de datos para mostrar.</h3>
+					{% endif %}
+		    	</div>
+		    	<div class="col-md-6">
+		    		<ul class="test_box">
+		    			<li class="test_img"><img src="" class="img-responsive" alt=""/> </li>
+						<li class="test_desc">
+							<h4><a href="#">Publicidad</a></h4>
+							<p>Confia en nuestros servicios de entrega, trámites, pagos, mandados, encomiendas, envíos y más para que puedas hacer tus actividades diarias con tranquilidad y seguridad.<a href="#" class="test_btn">Confia en Mandadithos Cia. Ltda.</a></p>
+					    </li>	
+					    <div class="clearfix">	</div>    		    				
+		    		</ul>
+		    	</div>
+		    </div>	
+		  </div>    
+		</div>
+		
+		<!--728x90-->
+		<div class="footer">
+			<!-- Aquí va el suscribirse a las noticias -->
+			<div class="footer_top">
+				<div class="container">
+					<div class="footer_head">
+						<h2>Mantenente informado</h2>
+						<p>Últimas noticias y novedades</p>
+		   			</div>
+					<div class="row footer_grid">
+					   <div class="col-md-6">
+							<ul class="message">
+								{# <li class="msg-icon"><i class="msg_icon"> </i></li> #}
+								<li class="msg-icon"><span class="icon-mail4"></span></li>
+								<li class="msg-desc">
+									<h4><a href="#">Suscríbete a nuestras últimas noticias y novedades</a></h4>
+									<p>Mediante correo electrónico te mantendremos informado.</p>
+								</li>
+								<div class="clearfix"> </div>
+							</ul>
+							<div class="subscribe">
+								<form>
+							      <input id="correo" type="text" value="" placeholder="Escribe tu correo aquí, correo@ejemplo.com">
+							      <!-- <input id="suscribete" type="submit" value="Suscríbete"> -->
+							      <input type="button" value="Suscribir" class="suscribete" id="suscribete" data-toggle="modal" data-target="#myModal">
+							      <!-- Button trigger modal -->
+								  <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button> -->
+						        </form>
+						    </div>
+						</div>
+						<div class="col-md-6">
+							<ul class="twitter">
+								<!-- <li class="twt_icon"><i class="twt"> </i></li> -->
+								<li class="twt_icon"><span class="icon-newspaper"></span></li>
+								<li class="twt_desc"><p>Únicamente necesitas tener un correo electrónico y así poder estar actualizado con las últimas noticias, novedades y todo con respecto a los servicios que ofrecemos como empresa de servicios.</p></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+				    </div>
+			   </div>
+		     </div>
+		     
+
+		     <div class="footer_midle">
+			   	<div class='container'>
+			   	 <div class="row">
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_facebook}}" target="_blank"><i class="fb"><span class="icon-facebook"></span> </i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_facebook}}" target="_blank">Síguenos en Facebook</a></h4>
+			   			  	<p>Comenta nuestras publicaciones.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_twiiter}}" target="_blank"><i class="twitter"><span class="icon-twitter"></span></i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_twiiter}}" target="_blank">Síguenos en Twitter</a></h4>
+			   			  	<p>Re-twittea nuestros twitts.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_instagram}}" target="_blank"><i class="instagram"><span class="icon-instagram"></span></i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_instagram}}" target="_blank">Síguenos en Instagram</a></h4>
+			   			  	<p>Revisa nuestras fotos.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   	 </div>
+		       </div>
+		    </div>
+{% endblock cuerpo %}
+
+{% block footer %}
+	<div class="footer_bottom">
+    	<div class="copy">
+          <p>Copyright &copy; 2016 Mandadithos. Todos los derechos reservados. 
+           <!-- Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> -->
+          </p>
+          <p>E-mail: <a href="mailto:{{empresa.email}}">{{empresa.email}}</a></p>
+          <p>Dirección: {{empresa.direccion}}</p>
+          <!-- <p>Teléfonos: {% for tel in telefonos %} {{tel.numero}} -{% endfor %}</p> -->
+       </div>
+    </div>
+{% endblock footer %}
+
+{% block scripts %}
+	<script type="text/javascript">
+		$("#inicio").addClass("current");
+	</script>
+	<script type="text/javascript">
+		var fecha = new Date();
+			f = (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+			validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+
+		$("#suscribete").on('click', registrar);
+		function registrar(){
+			var correo = $("#correo").val();
+			if (!validacion_email.test(correo)){
+				$("#myModalLabel").html("Error al enviar");
+				$("#modal-body").html("Escriba correctamente su correo");
+				$("#cerrar-modal").html("Cerrar");
+			}
+			else if (correo=""){
+				$("#myModalLabel").html("Error al enviar");
+				$("#modal-body").html("La casilla del email se encuetra vacía, indique su correo!!");
+			}
+			else{
+				var correo = $("#correo").val();
+				$.ajax({
+					data : {'correo':correo, 'fecha':f},
+					url : '/registro_correo/',
+					type : 'get',
+					success : function(data){
+						var object = JSON.parse(data);
+						/*aqui para poder llamar al modal e indicar el registro completo*/
+						if (object.respuesta=="no") {
+							$("#myModalLabel").html("Atención");
+							$("#modal-body").html("El correo electrónico <b><i>"+correo+"</i></b> ya existe en nuestra base de datos");
+							$("#cerrar-modal").html("Cerrar");				
+						}
+						else {
+							$("#myModalLabel").html("Éxito");
+							$("#modal-body").html("El correo electrónico <b><i>"+correo+"</i></b> se ha registrado satisfactoriamente, recibirás nuestras noticias en tu bandeja de correo electrónico");
+							$("#cerrar-modal").html("Aceptar");				
+							$("#correo").val("");
+						}
+					},
+				});
+			}				
+		}
+		$('.carousel').carousel();
+	</script>
+{% endblock scripts %}

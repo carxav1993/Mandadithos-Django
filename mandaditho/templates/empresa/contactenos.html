@@ -1,0 +1,194 @@
+{% extends "empresa/base.html" %}
+
+{% block titulo %}Contáctenos{% endblock titulo %}
+
+{% block principal %}{{empresa.nombre|upper}}{% endblock principal %}
+
+{% block cuerpo %}
+	<div class="about">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"></h4>
+		      </div>
+		      <div class="modal-body" id="modal-body">
+		      </div>
+		      <div class="modal-footer">
+		        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+		        <button type="button" class="btn btn-primary" data-dismiss="modal" id="cerrar-modal"></button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		 <!--//start-banner-->
+		  <div class="container">
+			<section class="title-section">
+				<h1 class="title-header">Contáctenos</h1>
+				<ul class="breadcrumb breadcrumb__t"><li><a href="{% url 'empresa:inicio' %}">Inicio</a></li><li class="active">Contáctenos</li></ul>  
+			</section> 
+	       </div>
+		</div>
+		<div class="contact">
+			<div class="container">
+				<!--728x90-->
+				<h2 class='item_title'>Contáctenos</h2>
+			    <div class="map">
+				  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.3222779301796!2d-79.95115695145387!3d-3.269975046472487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x11c1ed0a750c3efd!2sMobil+Mart+Arizaga!5e0!3m2!1sen!2sus!4v1468636434821" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			    </div>
+			    <!--728x90-->
+                <div class="row contact_top">
+                	<div class="col-md-4 contact_details">
+                	   <h5>Dirección :</h5>
+                	   <!-- <i class="address"></i> -->
+                	   <span class="icon-office"></span>
+                	   <div class="contact_address">
+						{{empresa.direccion}}<br>
+						<!--Atrás de la Gasolinera Mobil <br> -->
+						</div>
+                	</div>
+                	<div class="col-md-4 contact_details">
+                	   <h5>Teléfonos :</h5>
+                	   <!-- <i class="phone"></i> -->
+                	   <span class="icon-phone"></span>
+                	   <div class="contact_address">
+						{% for tel in telefonos %}
+							{{tel.numero}} ({{tel.get_operadora_display}}) <br>
+						{% endfor %}
+                		</div>
+            		</div>	
+                	<div class="col-md-4 contact_details">
+                	   <h5>Email :</h5>
+                	   <!-- <i class="mail"></i> -->
+                	   <span class="icon-envelop"></span>
+                	   <div class="contact_mail">
+						<a href="mailto:{{empresa.email}}">{{empresa.email}}</a>
+					   </div>
+                	</div>
+                </div>
+                <div class="contact_bottom">
+                   <h3>Información de Contacto</h3>
+                   <p>Ponte en contacto con nosotros, mediante llamadas por números de teléfonos, visitando nuestras oficinas o también puedes enviarnos un correo electrónico respondiendote a la brevedad posible y así poder satisfacer todas tus necesidades o cualquier inquietud, pregunta o queja que tengas sobre el servicio que ofrecemos.</p>
+                   <form method="post" action="contact-post.html">
+					<div class="contact-to">
+                     	<input id="nombre" type="text" class="text" value="" placeholder="Nombre y apellidos...">
+					 	<input id="email" type="text" class="text" value="" placeholder="Email..." style="margin-left: 10px">
+					 	<input id="asunto" type="text" class="text" value="" placeholder="Asunto..." style="margin-left: 10px">
+					</div>
+					<div class="text2">
+	                   <textarea id="mensaje" value="" placeholder="Mensaje..."></textarea>
+	                </div>
+	                <div>
+	               		<input id="enviar" type="button" class="suscribete" value="Enviar" data-toggle="modal" data-target="#myModal"/>
+	                </div>
+	             </form>
+                </div>
+			</div>
+		</div>
+
+		<div class="footer_midle">
+			   	<div class='container contact_bottom'>
+			   	<hr></hr>
+			   	<h3 style="text-align: center;">Redes Sociales</h3>
+			   	 <div class="row">
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_facebook}}" target="_blank"><i class="fb"><span class="icon-facebook"></span> </i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_facebook}}" target="_blank">Síguenos en Facebook</a></h4>
+			   			  	<p>Comenta nuestras publicaciones.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_twiiter}}" target="_blank"><i class="twitter"><span class="icon-twitter"></span></i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_twiiter}}" target="_blank">Síguenos en Twitter</a></h4>
+			   			  	<p>Re-twittea nuestros twitts.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   		<div class="col-md-4">
+			   		    <ul class="social_left">
+			   			  <li class="facebook"><a href="{{empresa.red_instagram}}" target="_blank"><i class="instagram"><span class="icon-instagram"></span></i></a></li>
+			   			  <li class="fb_text"><h4><a href="{{empresa.red_instagram}}" target="_blank">Síguenos en Instagram</a></h4>
+			   			  	<p>Revisa nuestras fotos.</p>
+			   			  </li>
+			   			  <div class="clearfix"> </div>
+			   			</ul>
+			   		</div>
+			   	 </div>
+		       </div>
+		    </div>
+		<!--//end-banner-->
+{% endblock cuerpo %}
+
+{% block footer %}
+	<div class="footer_bottom">
+    	<div class="copy">
+          <p>Copyright &copy; 2016 Mandadithos. Todos los derechos reservados. 
+           <!-- Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> -->
+          </p>
+          <p>E-mail: <a href="mailto:{{empresa.email}}">{{empresa.email}}</a></p>
+          <p>Dirección: {{empresa.direccion}}</p>
+          <!-- <p>Teléfonos: {% for tel in telefonos %} {{tel.numero}} -{% endfor %}</p> -->
+       </div>
+    </div>
+{% endblock footer %}
+
+{% block scripts %}
+	<script type="text/javascript">	
+		$("#contactenos").addClass("current");
+	</script>		
+	
+	<!--Script para coger los correos electronicos del formulario del contacto -->
+	<script type="text/javascript">
+			$("#enviar").on("click",envio);
+			function envio(){
+			
+			var nombre = $("#nombre").val();
+				correo = $("#email").val();
+				asunto = $("#asunto").val();
+				mensaje = $("#mensaje").val();
+				fecha = new Date();
+				f = (fecha.getDate() + "/" + (fecha.getMonth() +1) + "/" + fecha.getFullYear());
+				validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+
+				if (nombre=="" || correo=="" || asunto=="" || mensaje==""){
+					$("#myModalLabel").html("Atención");
+					$("#modal-body").html("Exiten campos vacíos, procure llenar todos los campos.");
+					$("#cerrar-modal").html("Cerrar");
+				}
+				else if (!validacion_email.test(correo)){
+					$("#myModalLabel").html("Atención");
+					$("#modal-body").html("Por favor, revisar el correo electrónico que se encuentra mal escrito");
+					$("#cerrar-modal").html("Cerrar");
+				}else {
+					$.ajax({
+						data : {'nombre':nombre, 'correo':correo, 'asunto':asunto, 'mensaje':mensaje, 'fecha':f},
+						url : '/ajax_contacto/',
+						type : 'get',
+						success : function(data){
+							console.log(data);
+							var object = JSON.parse(data);
+							if (object.respuesta=="si") {
+								$("#myModalLabel").html("Éxito");
+								$("#modal-body").html("Su mensaje ha sido recibido, atendermos la solicitud lo más pronto posible");
+								$("#cerrar-modal").html("Aceptar");
+								//encerar los casillas
+								nombre = $("#nombre").val("");
+								correo = $("#email").val("");
+								asunto = $("#asunto").val("");
+								mensaje = $("#mensaje").val("");
+							}
+						},
+					});
+				}
+			}
+	</script>
+
+
+{% endblock scripts %}

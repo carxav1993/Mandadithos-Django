@@ -1,0 +1,88 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Editar Local Comercial{% endblock titulo %}
+
+{% block cuerpo %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Editar local comercial o empresa</h1>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-lg-12">
+    		<form action="" method="POST">
+    		{% csrf_token %}
+    			<div class="form-group">
+    				<label>{{local.razon_social.label_tag}}</label>
+	                {{local.razon_social}}
+                    {{local.razon_social.errors}}
+    			</div> 
+    			<div class="form-group">
+    				<label>{{local.provincia.label_tag}}</label>
+	                {{local.provincia}}
+                    {{local.provincia.errors}}
+    			</div>
+                <div class="form-group">
+                    <label>{{local.ciudad.label_tag}}</label>
+                    {{local.ciudad}}
+                    {{local.ciudad.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.direccion.label_tag}}</label>
+                    {{local.direccion}}
+                    {{local.direccion.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.referencias.label_tag}}</label>
+                    {{local.referencias}}
+                    {{local.referencias.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.email.label_tag}}</label>
+                    {{local.email}}
+                    {{local.email.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.convencional1.label_tag}}</label>
+                    {{local.convencional1}}
+                    {{local.convencional1.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.convencional2.label_tag}}</label>
+                    {{local.convencional2}}
+                    {{local.convencional2.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.celular1.label_tag}}</label>
+                    {{local.celular1}}
+                    {{local.celular1.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.celular2.label_tag}}</label>
+                    {{local.celular2}}
+                    {{local.celular2.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.mensaje.label_tag}}</label>
+                    {{local.mensaje}}
+                    {{local.mensaje.errors}}
+                </div>
+                <div class="form-group">
+                    <label>{{local.fecha_registro.label_tag}}</label>
+                    {{local.fecha_registro}}
+                    {{local.fecha_registro.errors}}
+                </div>
+    			<div class="form-group">
+    				<input type="submit" value="Actualizar" class="btn btn-primary">
+    				<a href="{% url 'administrador:objetivos' %}" class="btn btn-danger">Cancelar</a>
+    			</div>
+    		</form>
+    	</div>
+    </div>
+{% endblock cuerpo %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $('.errorlist').css({'background' : 'red', 'color' : 'white'});
+    </script>
+{% endblock scripts %}

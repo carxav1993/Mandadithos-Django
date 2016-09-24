@@ -1,0 +1,21 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Empresa{% endblock titulo %}
+
+{% block cuerpo %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Bienvenido(a) {{user.username|capfirst}} al sitio de administación</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+		    <img src="{{empresa.logo.url}}" class="text-center img-responsive" alt="">
+        </div>
+    </div>
+{% endblock cuerpo %}
+	
+	
+{% block scripts %}
+	
+{% endblock scripts %}

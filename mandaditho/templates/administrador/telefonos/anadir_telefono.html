@@ -1,0 +1,45 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Añadir Teléfono{% endblock titulo %}
+
+
+{% block cuerpo %}
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Añadir Teléfono</h1>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-lg-12">
+    		<form action="" method="POST">
+    		{% csrf_token %}
+    			<div class="form-group">
+    				<label>(*){{telefono.tipo.label_tag}}</label>
+	                {{telefono.tipo}}
+                    {{telefono.tipo.errors}}
+    			</div> 
+    			<div class="form-group">
+    				<label>(*){{telefono.operadora.label_tag}}</label>
+	                {{telefono.operadora}}
+                    {{telefono.operadora.errors}}
+    			</div>
+    			<div class="form-group">
+    				<label>(*){{telefono.numero.label_tag}}</label>
+	                {{telefono.numero}}
+                    {{telefono.numero.errors}}
+    			</div>
+    			<div class="form-group">
+    				<input type="submit" value="Guardar" class="btn btn-primary">
+                    <a href="{% url 'administrador:telefonos' %}" class="btn btn-danger">Cancelar</a>
+    			</div>
+    		</form>
+    	</div>
+    </div>
+{% endblock cuerpo %}
+
+
+{% block scripts %}
+	<script type="text/javascript">
+        $('.errorlist').css({'background' : 'red', 'color' : 'white'});
+    </script>
+{% endblock scripts %}

@@ -1,0 +1,56 @@
+{% extends "administrador/base.html" %}
+
+{% block titulo %}Trabajos{% endblock titulo %}
+
+{% block cuerpo %}
+			<div class="row">
+		        <div class="col-lg-12">
+		            <h1 class="page-header">Solicitudes de Trabajo</h1>
+		        </div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-lg-12">
+		    		{% if contactenos.count == 0 %}
+		    			<h3>No existen registros de trabajos para mostrar</h3>
+	    			{% else %}
+			    		<table class="table table-hover">
+			    			<thead>
+	                            <tr>
+	                                <th>Apellidos</th>
+	                                <th>Nombres</th>
+	                                <th>Email</th>
+	                                <th>Celular</th>
+	                                <th>Revisado</th>
+	                                <th>Fecha Solicitud</th>
+	                                <th>Acciones</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                        {% for trab in trabajos %}
+	                            <tr>
+	                                <td>{{trab.apellido_paterno}} {{trab.apellido_materno}}</td>
+	                                <td>{{trab.nombres}}</td>
+	                                <td>{{trab.email}}</td>
+	                                <td>{{trab.celular}}</td>
+	                                <td>{{trab.revisado}}</td>
+	                                <td>{{trab.fecha_solicitud}}</td>
+	                                <td class="text-left">
+										<a href="{% url 'administrador:ver_trabajo' trab.id %}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Ver"><span class="fa fa-eye fa-fw"></span></a>
+										<a href="{% url 'administrador:eliminar_trabajo' trab.id %}" class="btn btn-danger" data-toggle="tooltip" title="Eliminar" data-toggle="tooltip" data-placement="right"><span class="fa fa-trash-o fa-fw"></span></a>
+	                                </td>
+	                            </tr>
+	                        {% endfor %}
+	                        </tbody>
+			    		</table>	
+		    		{% endif %}
+		    	</div>
+		    </div>
+{% endblock cuerpo %}	
+
+{% block scripts %}
+	<script type="text/javascript">
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+{% endblock scripts %}

@@ -1,0 +1,192 @@
+{% extends "empresa/base.html" %}
+
+{% block titulo %}Registrate{% endblock titulo %}
+
+{% block principal %}{{empresa.nombre|upper}}{% endblock principal %}
+
+{% block cuerpo %}
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body" id="modal-body">
+	        <p>Aquí va el codigo del bootrap</p>
+	      </div>
+	      <div class="modal-footer">
+	        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="cerrar-modal"></button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="about">
+	 <!--//start-banner-->
+	  <div class="container">
+		<section class="title-section">
+			<h1 class="title-header">Regístrate</h1>
+			<ul class="breadcrumb breadcrumb__t"><li><a href="{% url 'empresa:inicio' %}">Inicio</a></li><li class="active">Regístrate</li></ul>  
+		</section> 
+	   </div>
+	</div>
+	<div class="container">
+		<div class="content_white">
+			<h2>Regístrate</h2>
+			<p>En estos formularios puedes registrarte y así poder formar parte de esta increíble empresa de servicio o también si perteneces a un local comercial o empresa de negocios, puedes dejarnos tus datos por si necesitas de nuestros servicios o a la vez el cliente necesita de los tuyos.</p>
+	   	</div>
+	</div>
+	<div class="container">
+		<div class="testmonial"> 
+		    <div class="row testmonial_top">
+		    	<div class="col-md-6">
+		    		<ul class="test_box">
+		    			<li class="test_img"><img src="" class="img-responsive" alt=""/> </li>
+						<li class="test_desc">
+							<h4><a href="">Oportunidad Laboral</a></h4>
+							<p>Se parte de nuestra favorable empresa de servicios, Mandadihos Cia Ltda. Envíanos tus datos desde este formulario para poder contactarte.
+					    </li>	
+					    <div class="clearfix"></div>    				
+		    		</ul>
+		    		<form class="formulario" action="" method="POST">{% csrf_token %}
+		    			<table>
+		    				{{ trabajo.as_table }}
+		    			</table>
+		    			<input class="suscribete" value="Enviar" id="enviar_trabajo" type="button" data-toggle="modal" data-target="#myModal"/>
+		    		</form>
+		    	</div>
+		    	<div class="col-md-6">
+		    		<ul class="test_box">
+		    			<li class="test_img"><img src="" class="img-responsive" alt=""/> </li>
+						<li class="test_desc">
+							<h4><a href="#">Locales Comerciales</a></h4>
+							<p>Regístre aquí su local comercial o empresa para poder tener una referencia y mejorar nuestros servicios.</p>
+					    </li>	
+					    <div class="clearfix">	</div>    		    				
+		    		</ul>
+		    		<form class="local" action="" method="POST">{% csrf_token %}
+		    			<table>
+		    				{{ locales.as_table }}
+		    			</table>
+		    			<input class="suscribete" value="Enviar" id="enviar_locales" type="button" data-toggle="modal" data-target="#myModal"/>
+	    			</form>	
+		    	</div>
+		    </div>	
+		</div>
+	</div>
+	
+	
+{% endblock cuerpo %}
+
+{% block footer %}
+	<div class="footer_bottom">
+    	<div class="copy">
+          <p>Copyright &copy; 2016 Mandadithos. Todos los derechos reservados. 
+           <!-- Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> -->
+          </p>
+          <p>E-mail: <a href="mailto:{{empresa.email}}">{{empresa.email}}</a></p>
+          <p>Dirección: {{empresa.direccion}}</p>
+          <!-- <p>Teléfonos: {% for tel in telefonos %} {{tel.numero}} -{% endfor %}</p> -->
+       </div>
+    </div>
+{% endblock footer %}
+
+{% block scripts %}
+	<script type="text/javascript">
+		$("#registrate").addClass("current");
+	</script>
+	<script type="text/javascript">
+		$("#enviar_trabajo").on("click", function(){
+			var nombres = $(".formulario #id_nombres").val();
+				apellido1 = $(".formulario #id_apellidos_paterno").val();
+				apellido2 = $(".formulario #id_apellidos_materno").val();
+				fecha_naci = $(".formulario #id_fecha_nacimiento").val();
+				email = $(".formulario #id_email").val();
+				direccion = $(".formulario #id_direccion").val();
+				convencional = $(".formulario #id_convencional").val();
+				celular = $(".formulario #id_celular").val();
+				provincia = $(".formulario #id_provincia").val();
+				ciudad = $(".formulario #id_ciudad").val();
+				civil = $(".formulario #id_estado_civil").val();
+				curriculum = $(".formulario #id_curriculum").val();
+				validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+			console.log(nombres+apellido1+apellido2+fecha_naci+email+direccion+convencional+celular+provincia+ciudad+civil+curriculum);
+			if(nombres==""||apellido1==""||apellido2==""||fecha_naci==""||email==""||direccion==""||convencional==""||celular==""||ciudad==""||curriculum==""){
+				$("#myModalLabel").html("Atención");
+				$("#modal-body").html("Se encuentran campos vacios, procure ingresar todos los dato requeridos!");
+				$("#cerrar-modal").html("Cerrar");
+			}else if(!validacion_email.test(email)){
+				$("#myModalLabel").html("Atención");
+				$("#modal-body").html("El email que intenta ingresar se encuentra mal escrito, corríjalo por favor!");
+				$("#cerrar-modal").html("Cerrar");
+			}else{
+				$.ajax({
+					data: {'nombres': nombres, 'apellido1': apellido1, 'apellido2': apellido2, 'nacimiento': fecha_naci, 'email':email, 'direccion':direccion,'convencional': convencional, 'celular':celular, 'provincia': provincia, 'ciudad':ciudad, 'civil':civil, 'curriculum':curriculum},
+					url:"/trabajo_ajax/",
+					type:"get",
+					success:function(data){
+						obj = JSON.parse(data);
+						//alert("todo correcto: "+obj.respuesta);
+						$("#myModalLabel").html("Éxito");
+						$("#modal-body").html("Su solicitud de empleo ha sido reciba, revisaremos tu información y te contactaremos lo más pronto posible.");
+						$("#cerrar-modal").html("Cerrar");
+						//encerar todos los datos
+						$(".formulario #id_nombres").val("");
+						$(".formulario #id_apellidos_paterno").val("");
+						$(".formulario #id_apellidos_materno").val("");
+						$(".formulario #id_fecha_nacimiento").val("");
+						$(".formulario #id_email").val("");
+						$(".formulario #id_direccion").val("");
+						$(".formulario #id_convencional").val("");
+						$(".formulario #id_celular").val("");
+						$(".formulario #id_provincia").val("");
+						$(".formulario #id_ciudad").val("");
+						$(".formulario #id_estado_civil").val("");
+						$(".formulario #id_curriculum").val("");
+					},
+				})
+			}	
+		});
+	
+		$("#enviar_locales").on("click", function(){
+			var razon = $(".local #id_razon_social").val();
+				provincia = $(".local #id_provincia").val();
+				ciudad = $(".local #id_ciudad").val();
+				direccion = $(".local #id_direccion").val();
+				referencias = $(".local #id_referencias").val();
+				email = $(".local #id_email").val();
+				convencional1 = $(".local #id_convencional1").val();
+				convencional2 = $(".local #id_convencional2").val();
+				celular1 = $(".local #id_celular1").val();
+				celular2 = $(".local #id_celular2").val();
+				mensaje = $(".local #id_mensaje").val();
+				validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+			if (razon==""||ciudad==""||direccion==""||referencias==""||email==""||celular1==""||mensaje=="") {
+				$("#myModalLabel").html("Atención");
+				$("#modal-body").html("Se encuentran campos vacios, procure ingresar todos los dato requeridos!");
+				$("#cerrar-modal").html("Cerrar");
+			}else if (!validacion_email.test(email)) {
+				$("#myModalLabel").html("Atención");
+				$("#modal-body").html("El email que intenta ingresar se encuentra mal escrito, corríjalo por favor!");
+				$("#cerrar-modal").html("Cerrar");
+			}else{
+				$.ajax({
+					data: {'razon':razon, 'provincia':provincia, 'ciudad':ciudad, 'direccion':direccion, 'referencias':referencias, 'email':email, 'convencional1':convencional1, 'convencional2':convencional2, 'celular1':celular1, 'celular2':celular2, 'mensaje':mensaje},
+					url:'/locales_ajax/',
+					type:'get',
+					success:function(data){
+						obj = JSON.parse(data);
+						//alert("Su se evalúo correctamente: "+obj.respuesta);
+						$("#myModalLabel").html("Atención");
+						$("#modal-body").html("Su solicitud ha sido recibida.");
+						$("#cerrar-modal").html("Cerrar");
+					},
+				});
+			}
+		});
+	</script>
+{% endblock scripts %}

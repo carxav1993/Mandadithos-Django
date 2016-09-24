@@ -1,0 +1,54 @@
+{% extends "empresa/base.html" %}
+
+{% block titulo %}Servicios{% endblock titulo %}
+
+{% block principal %}{{empresa.nombre|upper}}{% endblock principal %}
+
+{% block cuerpo %}
+	<div class="about">
+		 <!--//start-banner-->
+		  <div class="container">
+			<section class="title-section">
+				<h1 class="title-header">Servicios</h1>
+				<ul class="breadcrumb breadcrumb__t"><li><a href="{% url 'empresa:inicio' %}">Inicio</a></li><li class="active">Servicios</li></ul>  
+			</section> 
+	       </div>
+		</div>
+		<div class="about_bottom">
+		  <div class="container">
+		  	<!--728x90-->
+		  	<div class="row">
+		  		{% for servicio in servicios %}
+		  			<div class="col-md-3 service_box">
+		  				<img src="{{servicio.img_servicio.url}}" width="200px" height="200px" alt="">
+			  			<h2>{{servicio.tipo.tipo}}</h2>
+			  			<h5><a href="#">{{servicio.descripcion_pequenia}}</a></h5>
+			  			<p>{{servicio.descripcion_grande}}</p>
+		                <!-- <a href="#" class="about_btn" title="more">more</a> -->
+		  			</div>	
+		  		{% endfor %}
+		  	</div>
+		  	<!--728x90-->
+		</div>
+		</div>
+		<!--//end-banner-->
+{% endblock cuerpo %}
+
+{% block footer %}
+	<div class="footer_bottom">
+    	<div class="copy">
+          <p>Copyright &copy; 2016 Mandadithos. Todos los derechos reservados. 
+           <!-- Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> -->
+          </p>
+          <p>E-mail: <a href="mailto:{{empresa.email}}">{{empresa.email}}</a></p>
+          <p>Dirección: {{empresa.direccion}}</p>
+          <!-- <p>Teléfonos: {% for tel in telefonos %} {{tel.numero}} -{% endfor %}</p> -->
+       </div>
+    </div>
+{% endblock footer %}
+
+{% block scripts %}
+	<script type="text/javascript">
+		$("#servicios").addClass("current");
+	</script>
+{% endblock scripts %}

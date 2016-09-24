@@ -1,0 +1,23 @@
+html, body{
+	font-size: 100%;
+}
+
+.header{
+	background: #fff;
+	padding: 2em 0;
+}
+
+.logo{
+	float: left;
+	margin-top: 5px;
+}
+
+.img-logo{
+	width: 170px;
+	height: 90px;
+}
+
+.menu{
+	float: right;
+	
+}
